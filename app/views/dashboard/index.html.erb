@@ -1,1 +1,7 @@
-Welcome back <%= current_user.username %>
+<div class="col-3 float-left pr-3">
+  <img src= <%= current_user.avatar %> width="230" height="230"/><br />
+  <%= current_user.name %><br />
+  <%= current_user.bio %><br />
+  <%= current_user.location %><br />
+  Joined on <%= time_tag(current_user.joined.to_datetime) %><br/>
+</div>
