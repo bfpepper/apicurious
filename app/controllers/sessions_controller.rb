@@ -6,12 +6,16 @@ class SessionsController < ApplicationController
       token = @response.body.split(/\W+/)[1]
 
       oauth_response = Faraday.get("https://api.github.com/user?access_token=#{token}")
-
       auth = JSON.parse(oauth_response.body)
 
       user          = User.find_or_create_by(uid: auth["id"])
       user.username = auth["login"]
       user.uid      = auth["id"]
+      user.name     = auth["name"]
+      user.avatar   = auth["avatar_url"]
+      user.bio      = auth["bio"]
+      user.location = auth["locaiton"]
+      user.joined   = auth["created_at"]
       user.token    = token
       user.save
 
