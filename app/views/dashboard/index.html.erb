@@ -5,3 +5,6 @@
   <%= current_user.location %><br />
   Joined on <%= time_tag(current_user.joined.to_datetime) %><br/>
 </div>
+
+<%= link_to "Your Repos", repos_path %>
+<%= link_to "Your Organizations", orgs_path %>

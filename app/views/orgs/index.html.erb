@@ -1,0 +1,5 @@
+<% @orgs.each do |org| %>
+<%= org.pic %></br>
+<%= link_to org.name, org.repos %></br>
+<%= org.description %>
+<% end %>
