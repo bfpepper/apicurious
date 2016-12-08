@@ -42,6 +42,10 @@ group :development, :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'byebug'
+  gem 'vcr'
+  gem 'webmock'
+  gem 'simplecov'
+  gem 'capybara'
 end
 
 group :development do
