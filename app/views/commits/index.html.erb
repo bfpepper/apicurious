@@ -1,4 +1,4 @@
 <% @commits.each do |commit| %>
-<h2><%= commit.message %></h2>
+<h3><%= commit.message %></h3>
 <p>Created at <%= time_tag(commit.created.to_datetime) %></p></br>
 <% end %>
