@@ -14,13 +14,12 @@ class SessionsController < ApplicationController
       user.name     = auth["name"]
       user.avatar   = auth["avatar_url"]
       user.bio      = auth["bio"]
-      user.location = auth["locaiton"]
+      user.location = auth["location"]
       user.joined   = auth["created_at"]
       user.token    = token
       user.save
 
       session[:user_id] = user.id
-
       redirect_to dashboard_index_path
   end
 end

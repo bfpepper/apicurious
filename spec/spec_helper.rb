@@ -23,6 +23,10 @@ end
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  config.before(:all) do
+    @user = User.create(username: "bfpepper", uid: "12", name: "Ben Pepper", avatar: "https://avatars0.githubusercontent.com/u/9462479?v=3&s=460", bio: "its a thing", location: "Denver, Co", joined: "2014-10-30T12:26:44Z", token: "#{ENV['github_user_token']}")
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

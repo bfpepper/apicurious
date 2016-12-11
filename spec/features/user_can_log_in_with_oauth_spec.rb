@@ -1,14 +1,28 @@
 require "rails_helper"
 
-describe "user login with oauth" do
-  it "user logs in with github oauth" do
-    visit root_path
+describe "user can see all repos" do
+  it "user sees all repos when loged in" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    VCR.use_cassette("repos") do
+      visit repos_path
 
-    click_on("Login With GitHub")
+      expect(page).to have_content("active-record-exploration")
+    end
+  end
+  it "user can see all commits" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    VCR.use_cassette("commits") do
+      visit commits_path
 
-    fill_in("Username or email address"), with: "bfpepper87"
-    fill_in("password"), with: "#{ENV['me']}"
+      expect(page).to have_content("Merge pull request #4 from bfpepper/services_test add commits to index page.")
+    end
+  end
 
-    expect(page).to have("Ben Pepper")
+  it "user can see landing page" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
+    visit dashboard_index_path
+
+    expect(page).to have_content(@user.name)
   end
 end
